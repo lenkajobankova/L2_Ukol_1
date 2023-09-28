@@ -1,46 +1,38 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Booking {
     private Guest guest, guest2;
     private Room room;
     private LocalDate dateFrom, dateTo;
+    private boolean isHoliday;
 
-    //Metoda pro zadání jednoho hosta s daty pobytu
-    public Booking(Guest guest, Room room, LocalDate dateFrom, LocalDate dateTo){
+    //region Konstruktory
+    //Konstruktor pro zadání jednoho hosta
+    public Booking(Guest guest, Room room, LocalDate dateFrom, LocalDate dateTo,
+                   boolean isHoliday){
         this.guest = guest;
         this.room = room;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
+        this.isHoliday = isHoliday;
     }
 
-    //Metoda pro zadání dvou hostů s daty pobytu
-    public Booking(Guest guest, Guest guest2, Room room, LocalDate dateFrom, LocalDate dateTo){
-        this.guest = guest;
+    //Konstruktor pro zadání dvou hostů
+    public Booking(Guest guest2, Guest guest, Room room, LocalDate dateFrom, LocalDate dateTo,
+                   boolean isHoliday){
+        this(guest, room, dateFrom, dateTo, isHoliday);
         this.guest2 = guest2;
-        this.room = room;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
     }
-
-    //Metoda pro zadání jednoho hosta s pobytem ode dněška na 6 dní
     public Booking(Guest guest, Room room){
-        this.guest = guest;
-        this.room = room;
-        this.dateFrom = LocalDate.now();
-        this.dateTo = LocalDate.now().plusDays(6);
+        this(guest, room, LocalDate.now(), LocalDate.now().plusDays(6), true);
     }
 
-    //Metoda pro zadání dvou hostů s pobytem ode dněška na 6 dní
-    public Booking(Guest guest, Guest guest2, Room room){
-        this.guest = guest;
-        this.guest2 = guest2;
-        this.room = room;
-        this.dateFrom = LocalDate.now();
-        this.dateTo = LocalDate.now().plusDays(6);
-    }
+    //endregion
 
+    //region Přístupové metody
     public Guest getGuest() {
-
         return guest;
     }
 
@@ -64,19 +56,22 @@ public class Booking {
         this.room = room;
     }
 
-    public LocalDate getDateFrom() {
-        return dateFrom;
+    public String getDateFrom() {
+        return dateFrom.format(
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).toString();
     }
 
     public void setDateFrom(LocalDate dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public LocalDate getDateTo() {
-        return dateTo;
+    public String getDateTo() {
+        return dateTo.format(DateTimeFormatter.ofLocalizedDate
+                (FormatStyle.MEDIUM)).toString();
     }
 
     public void setDateTo(LocalDate dateTo) {
         this.dateTo = dateTo;
     }
+    //endregion
 }

@@ -7,10 +7,16 @@ public class Guest {
     private LocalDate born;
     private String description;
 
+    //region Konstruktory
+
     public Guest(String name, LocalDate born) {
         this.name = name;
         this.born = born;
     }
+
+    //endregion
+
+    //region Přistupové metody
 
     public String getName() {
         return name;
@@ -23,6 +29,10 @@ public class Guest {
     public LocalDate getBorn() {
         return born;
     }
+    public String getBornCZ(){
+        return born.format(DateTimeFormatter.
+                ofLocalizedDate(FormatStyle.MEDIUM)).toString();
+    }
 
     public void setBorn(LocalDate born) {
         this.born = born;
@@ -34,4 +44,6 @@ public class Guest {
                 (DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).toString()+")";
         return description;
     }
+
+    //endregion
 }

@@ -1,38 +1,68 @@
-import java.math.BigDecimal;
-
 public class Room {
-    private int number, bed, price;
-    private boolean balcony, sea;
+    private int roomNumber, numberOfBeds, pricePerNight;
+    private boolean isBalcony, isSea;
 
-    public Room(int number, int bed, boolean balcony, boolean sea, int price){
-        this.number = number;
-        this.bed = bed;
-        this.balcony = balcony;
-        this.sea = sea;
-        this.price = price;
+    //region Konstruktory
+
+    public Room(int roomNumber, int numberOfBeds, boolean isBalcony, boolean isSea, int pricePerNight){
+        this.roomNumber = roomNumber;
+        this.numberOfBeds = numberOfBeds;
+        this.isBalcony = isBalcony;
+        this.isSea = isSea;
+        this.pricePerNight = pricePerNight;
     }
 
-    public int getNumber() {
-        return number;
+    //endregion
+
+    //region Přístupové metody
+
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
-    public int getBed() {
-        return bed;
+    public int getNumberOfBeds() {
+        return numberOfBeds;
     }
 
-    public void setBed(int bed) {
-        this.bed = bed;
+    public void setNumberOfBeds(int numberOfBeds) {
+        this.numberOfBeds = numberOfBeds;
+    }
+    public String isBalcony(){
+        if (isBalcony==true){
+            return " s balkonem";
+        }
+        else {
+            return " bez balkonu";
+        }
     }
 
-    public int getPrice() {
-        return price;
+    public void setBalcony(boolean balcony) {
+        isBalcony = balcony;
+    }
+    public String isSea(){
+        if (isSea==true){
+            return " a s výhledem na moře";
+        }
+        else {
+            return " a bez výhledu na moře";
+        }
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setSea(boolean sea) {
+        isSea = sea;
     }
+
+    public int getPricePerNight() {
+        return pricePerNight;
+    }
+
+    public void setPricePerNight(int pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
+
+    //endregion
 }
